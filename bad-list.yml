@@ -1,0 +1,24 @@
+- Name: Ertelecom Novosibirsk
+  City: Novosibirsk
+  address: st.nsk.ertelecom.ru
+  port: 5201
+- Name: Ertelecom Novokuznetsk
+  City: Novokuznetsk
+  address: st.nk.ertelecom.ru
+  port: 5201
+- Name: TTK Ufa
+  City: Ufa
+  address: speed-ufa.vtt.net
+  port: 5201
+- Name: TTK Samara
+  City: Samara
+  address: speed-sma.vtt.net
+  port: 5201
+- Name: TTK Vladimir
+  City: Vladimir
+  address: speed-vld.vtt.net
+  port: 5201
+- Name: Ertelecom Orenburg
+  City: Orenburg
+  address: st.oren.ertelecom.ru
+  port: 5201
