@@ -1,5 +1,8 @@
 name: Run iPerf3 Check and Update README
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   schedule:
@@ -11,13 +14,16 @@ on:
       - 'check-iperf3.py'
       - 'Dockerfile'
       - '.github/workflows/run-iperf3.yml'
+
 jobs:
   run-iperf3-check:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Build Docker image
         run: docker build -t iperf3-check .
@@ -30,11 +36,15 @@ jobs:
 
       - name: Set up Git user
         run: |
-          git config --global user.name "iperf3-checker-bot"
-          git config --global user.email "iperf3-checker-bot@itdog.info"
+          git config user.name "iperf3-checker-bot"
+          git config user.email "iperf3-checker-bot@itdog.info"
 
       - name: Commit and push if README.md changed
         run: |
           git add README.md
-          git diff --cached --quiet || git commit -m "Update from the bot"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes in README.md"
+          else
+            git commit -m "Update from the bot"
+            git push origin main
+          fi
